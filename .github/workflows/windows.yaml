@@ -33,6 +33,9 @@ jobs:
       run: |
         vcpkg install tbb openimageio --triplet x64-windows
 
+    - name: Install CUDA Toolkit
+      uses: Jimver/cuda-toolkit@v0.2
+
     - name: Configure CMake
       run: |
         cmake -B build -S . `
@@ -41,7 +44,7 @@ jobs:
           -DOIDN_APPS=ON `
           -DOIDN_APPS_OPENIMAGEIO=ON `
           -DOIDN_DEVICE_SYCL=OFF `
-          -DOIDN_DEVICE_CUDA=OFF `
+          -DOIDN_DEVICE_CUDA=ON `
           -DOIDN_DEVICE_HIP=OFF 
 
     - name: Build oidnDenoise
