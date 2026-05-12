@@ -23,7 +23,7 @@ jobs:
     - name: Install OpenImageIO and TBB (via vcpkg)
       # vcpkg is GitHub's built-in C++ package manager. This downloads the required libraries.
       run: |
-        vcpkg install tbb openimageio[libpng,libjpeg-turbo,tiff,openexr] --triplet x64-windows
+        vcpkg install tbb openimageio --triplet x64-windows
 
     - name: Configure CMake
       run: |
