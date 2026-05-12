@@ -2,7 +2,7 @@ name: Build OIDN with OpenImageIO
 
 # This allows you to manually trigger the build from the Actions tab
 on:
-  workflow_dispatch: 
+  push:
 
 jobs:
   build-windows:
