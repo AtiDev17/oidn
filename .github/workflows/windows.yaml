@@ -34,7 +34,7 @@ jobs:
         vcpkg install tbb openimageio --triplet x64-windows
 
     - name: Install CUDA Toolkit
-      uses: Jimver/cuda-toolkit@v0.2
+      uses: Jimver/cuda-toolkit@master
 
     - name: Configure CMake
       run: |
