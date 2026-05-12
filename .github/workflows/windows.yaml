@@ -13,6 +13,7 @@ jobs:
       uses: actions/checkout@v6
       with:
         submodules: recursive
+        lfs: true
 
     - name: Install ISPC Compiler
       run: |
@@ -20,8 +21,15 @@ jobs:
         Expand-Archive ispc.zip -DestinationPath .
         echo "${{ github.workspace }}\ispc-v1.30.0-windows\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
+    - name: Cache vcpkg dependencies
+      id: vcpkg-cache
+      uses: actions/cache@v5
+      with:
+        path: C:\vcpkg\installed
+        key: ${{ runner.os }}-vcpkg-openimageio-tbb
+
     - name: Install OpenImageIO and TBB (via vcpkg)
-      # vcpkg is GitHub's built-in C++ package manager. This downloads the required libraries.
+      if: steps.vcpkg-cache.outputs.cache-hit != 'true'
       run: |
         vcpkg install tbb openimageio --triplet x64-windows
 
